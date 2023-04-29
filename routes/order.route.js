@@ -7,7 +7,7 @@ orderRouter.get("/:id", async (req, res) => {
   try {
     const orders = await OrderModel.findById(req.params.id);
     res.send({
-      message: `Here is the list of orders with id:${req.params.id}`,
+      message: `Here is the list of orders with id:${req.params.id}`,orders
     });
   } catch (error) {
     console.log(
@@ -39,9 +39,7 @@ orderRouter.post("/", async (req, res) => {
 
 orderRouter.put("/:id", async (req, res) => {
   try {
-    const order = await OrderModel.findByIdAndUpdate(req.params.id, {
-      status: req.body,
-    });
+    const order = await OrderModel.findByIdAndUpdate(req.params.id, req.body);
     res.send({
       message: `Status updated successfully with id:${req.params.id}`,
     });
